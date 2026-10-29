@@ -1,0 +1,44 @@
+def replace_value(values, index, new_value):
+    values[index] = new_value
+
+def find_first(values, target):
+    for i in range(len(values)):
+        if values[i] == target:
+            return i
+    return -1
+
+def summarize(values):
+    return min(values), max(values), sum(values)
+
+n = int(input("Enter the number of days: "))
+
+original = []
+for _ in range(n):
+    original.append(int(input("Enter the number of website visits: ")))
+
+updated = original[:]
+
+idx = int(input("Enter the index to correct: "))
+val = int(input("Enter the new number of visits: "))
+replace_value(updated, idx, val)
+
+target = int(input("Enter the number of visits to search for: "))
+
+first_idx = find_first(updated, target)
+cnt = updated.count(target)
+minimum, maximum, total = summarize(updated)
+sorted_list = sorted(updated)
+
+print(f"Original: {original}")
+print(f"Updated: {updated}")
+print(f"Sorted: {sorted_list}")
+print(f"Minimum number of visits: {minimum}")
+print(f"Maximum number of visits: {maximum}")
+print(f"Total number of visits: {total}")
+
+if first_idx != -1:
+    print(f"First matching index: {first_idx}")
+else:
+    print("Target not found")
+
+print(f"Matching values: {cnt}")
